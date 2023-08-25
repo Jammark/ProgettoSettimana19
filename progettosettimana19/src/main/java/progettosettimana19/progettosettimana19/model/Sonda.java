@@ -1,5 +1,7 @@
 package progettosettimana19.progettosettimana19.model;
 
+import java.util.Random;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +15,7 @@ public class Sonda {
 	private double longitudine, latitudine;
 	private int livelloDiFumo;
 	private ScheduledThreadPoolExecutor t;
+	private ScheduledFuture<?> task;
 	private LuogoDiInstallazione luogo;
 
 	public Sonda(double longitudine, double latitudine) {
@@ -37,7 +40,7 @@ public class Sonda {
 
 	public void attiva() {
 		t = new ScheduledThreadPoolExecutor(2);
-		t.scheduleAtFixedRate(this::increment, 1, 2, TimeUnit.SECONDS);
+		this.task = t.scheduleAtFixedRate(this::increment, new Random().nextInt(5), 2, TimeUnit.SECONDS);
 	}
 
 	public void setLuogo(LuogoDiInstallazione luogo) {
@@ -48,6 +51,11 @@ public class Sonda {
 	public String toString() {
 		return "Sonda [longitudine=" + longitudine + ", latitudine=" + latitudine + ", livelloDiFumo=" + livelloDiFumo
 				+ ", luogo=" + luogo.getIndirizzo() + "]";
+	}
+
+	public void reset() {
+		this.livelloDiFumo = 0;
+		task.cancel(true);
 	}
 
 }

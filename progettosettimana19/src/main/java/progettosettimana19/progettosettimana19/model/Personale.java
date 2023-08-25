@@ -16,6 +16,7 @@ public class Personale implements Subscriber {
 	public void intervento(Sonda s) {
 		log.info("intervento: " + getNomeCompleto() + " di ruolo " + getRuolo() + "intervenuto sulla sonda "
 				+ s.toString());
+		s.reset();
 
 	}
 
