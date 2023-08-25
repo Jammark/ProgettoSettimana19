@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import progettosettimana19.progettosettimana19.model.AbstractProcesso;
 import progettosettimana19.progettosettimana19.model.Addetto;
@@ -23,10 +24,12 @@ import progettosettimana19.progettosettimana19.model.Sonda;
 @Component
 @Order(1)
 @Slf4j
+@Getter
 public class MainRunner implements CommandLineRunner {
 
 	private AbstractProcesso processo;
 	private Set<Personale> personale = new HashSet<>();
+
 
 	@Override
 	public void run(String... args) throws Exception {

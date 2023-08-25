@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import lombok.Getter;
+
+@Getter
 public abstract class AbstractProcesso {
 
 	private CentroDiControllo centro;
