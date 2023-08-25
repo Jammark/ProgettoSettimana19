@@ -9,6 +9,7 @@ public abstract class AbstractProcesso {
 
 	private CentroDiControllo centro;
 	private Set<Sonda> sonde = new HashSet<>();
+	private ScheduledThreadPoolExecutor t;
 
 	public AbstractProcesso(CentroDiControllo centro) {
 		super();
@@ -17,6 +18,7 @@ public abstract class AbstractProcesso {
 
 	public void register(Sonda s) {
 		this.sonde.add(s);
+		s.attiva();
 	}
 
 	private void proceede() {
@@ -29,7 +31,7 @@ public abstract class AbstractProcesso {
 	}
 
 	public void start() {
-		ScheduledThreadPoolExecutor t = new ScheduledThreadPoolExecutor(2);
+		t = new ScheduledThreadPoolExecutor(2);
 		t.scheduleAtFixedRate(this::proceede, 2, 1, TimeUnit.SECONDS);
 	}
 

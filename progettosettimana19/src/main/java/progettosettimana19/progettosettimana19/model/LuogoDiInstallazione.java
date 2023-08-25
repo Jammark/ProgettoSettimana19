@@ -10,6 +10,6 @@ public class LuogoDiInstallazione {
 	private String indirizzo;
 	private String città;
 	private Sonda s;
-	private ProcessoDiControllo processo;
+	private AbstractProcesso processo;
 
 }
